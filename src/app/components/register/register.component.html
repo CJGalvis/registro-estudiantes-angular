@@ -1,0 +1,100 @@
+<div class="card animated fadeIn" *ngIf="!loading">
+  <div class="card-header">
+    <h5 class="card-title">Registro de estudiantes</h5>
+  </div>
+
+  <div class="card-body">
+    <form [formGroup]="registerForm">
+      <div class="form-group">
+        <label for="inputDni">DNI del estudiante</label>
+        <input
+          type="text"
+          class="form-control"
+          [class.is-invalid]="registerForm!.get('dni')?.hasError('pattern')"
+          id="inputDni"
+          formControlName="dni"
+          required
+        />
+        <small
+          *ngIf="registerForm?.get('dni')?.hasError('pattern')"
+          class="form-text text-muted animated fadeIn"
+        >
+          Este campo es solo numérico
+        </small>
+      </div>
+
+      <div class="form-group mt-2">
+        <label for="inputName">Nombre del estudiante</label>
+        <input
+          type="text"
+          class="form-control"
+          [class.is-invalid]="registerForm!.get('name')?.hasError('pattern')"
+          id="inputName"
+          formControlName="name"
+          required
+        />
+        <small
+          *ngIf="registerForm?.get('name')?.hasError('pattern')"
+          class="form-text text-muted animated fadeIn"
+        >
+          El formato del campo no es correcto
+        </small>
+      </div>
+    </form>
+  </div>
+
+  <div class="card-header">
+    <h5 class="card-title">Seleccion de materias</h5>
+  </div>
+
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Créditos</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of subjectsList; let i = index">
+          <th scope="row">
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                [disabled]="item.disabled"
+                [(ngModel)]="item.selected"
+                (change)="getChangeCheck(item)"
+              />
+            </div>
+          </th>
+          <td>{{ item.name }}</td>
+          <td>{{ item.credits }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button
+      type="button"
+      class="btn btn-primary mt-3"
+      [disabled]="!disabledButton"
+      (click)="registerStudent()"
+    >
+      Registrar
+    </button>
+  </div>
+</div>
+
+<div
+  class="alert alert-info text-center animated fadeIn"
+  role="alert"
+  *ngIf="loading"
+>
+  <h4 class="alert-heading">Cargando...</h4>
+  <p>
+    <i class="fa fa-sync fa-spin fa-2x"></i>
+  </p>
+  <p class="mb-0"></p>
+</div>

@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark p-l">
+  <a class="navbar-brand" routerLink="/">Registro Estudiantes</a>
+
+  <div
+    class="collapse navbar-collapse"
+    id="navbarSupportedContent"
+    style="justify-content: space-between; margin-left: 5px; margin-right: 5px"
+  >
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/list">Lista </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/register">Registro</a>
+      </li>
+    </ul>
+    <div class="form-inline my-2 my-lg-0">
+      <div class="input-group">
+        <input
+          #txtInput
+          class="form-control mr-sm-2"
+          type="search"
+          placeholder="DNI Estudiante"
+          (keyup.enter)="buscarUsuario(txtInput.value)"
+        />
+        <button
+          class="btn btn-outline-success my-2 my-sm-0"
+          type="button"
+          (click)="buscarUsuario(txtInput.value)"
+        >
+          Buscar
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
