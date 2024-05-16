@@ -6,13 +6,21 @@ export interface SubjectssState {
   subjects: Array<any>;
 }
 const subjectsInitialState: SubjectssState = {
-  subjects: SUBJECTS,
+  subjects: [],
 };
 
 const _subjectsReducer = createReducer(
   subjectsInitialState,
   on(actions.loadSubjects, (state) => ({
     ...state,
+  })),
+  on(actions.loadSubjectsSuccess, (state, { subjects }) => ({
+    ...state,
+    subjects
+  })),
+  on(actions.loadSubjectsError, (state, { error }) => ({
+    ...state,
+    error
   }))
 );
 

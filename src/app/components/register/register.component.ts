@@ -104,16 +104,6 @@ export class RegisterComponent implements OnInit {
    * a través de redux
    */
   registerStudent() {
-    // reemplazar por este código
-    // this.store.dispatch(
-    //   registerStudent({
-    //     student: {
-    //       ...this.registerForm.value,
-    //       subjects: [...this.subjectsListSelected],
-    //     },
-    //   })
-    // );
-
     this.store.dispatch(
       registerStudent({
         student: {
