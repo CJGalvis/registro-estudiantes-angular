@@ -58,7 +58,7 @@ export class RegisterComponent implements OnInit {
   getChangeCheck(item: any) {
     if (item.selected) {
       if (this.subjectsListSelected.length < 3) {
-        this.subjectsListSelected.push(item.id);
+        this.subjectsListSelected.push(item);
       }
     } else {
       const index = this.subjectsListSelected.findIndex(
@@ -108,7 +108,7 @@ export class RegisterComponent implements OnInit {
       registerStudent({
         student: {
           ...this.registerForm.value,
-          SubjectIds: [...this.subjectsListSelected],
+          SubjectIds: [...this.subjectsListSelected.map(item => item.id)],
         },
       })
     );
