@@ -10,7 +10,9 @@ import { StudentsState } from 'src/app/store/reducers/students.reducer';
 })
 export class ListComponent implements OnInit {
   public listStudents: Array<any> = [];
+  public student: any;
   public loading: boolean = false;
+  public error: any ;
 
   constructor(private store: Store<AppState>) {}
 
@@ -18,6 +20,8 @@ export class ListComponent implements OnInit {
     this.store.select('students').subscribe((state: StudentsState) => {
       this.listStudents = state.students;
       this.loading = state.loading;
+      this.student = state.studentSelected;
+      this.error = state.error
     });
   }
 }

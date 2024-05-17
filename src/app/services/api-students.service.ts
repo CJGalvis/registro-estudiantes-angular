@@ -16,7 +16,12 @@ export class ApiStudentsService {
   }
 
   getSubjectsByStudent(dni: string) {
+    const url = `${this.base_url}/students/${dni}/classmates`;
+    return this.http.get(url);
+  }
+
+  getSubjectsByDNI(dni: string) {
     const url = `${this.base_url}/students/${dni}`;
-    return this.http.get(url).pipe(map((res: any) => res.data));
+    return this.http.get(url);
   }
 }

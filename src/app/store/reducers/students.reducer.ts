@@ -35,6 +35,7 @@ const _studentsReducer = createReducer(
   on(actions.loadStudents, (state, { filter }) => ({
     ...state,
     loading: true,
+    error: null,
     filter,
   })),
   on(actions.loadStudentsSuccess, (state, { students }) => ({
@@ -46,6 +47,15 @@ const _studentsReducer = createReducer(
     ...state,
     loading: false,
     error,
+  })),
+  on(actions.loadStudent, (state, { filter }) => ({
+    ...state,
+    filter,
+  })),
+  on(actions.loadStudentSuccess, (state, { data }) => ({
+    ...state,
+    loading: false,
+    studentSelected: data,
   }))
 );
 

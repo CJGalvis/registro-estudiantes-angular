@@ -15,6 +15,16 @@ export const registerStudentError = createAction(
   props<{ error: any }>()
 );
 
+export const loadStudent = createAction(
+  '[Student]  loadStudent',
+  props<{ filter: string }>()
+);
+
+export const loadStudentSuccess = createAction(
+  '[Student]  loadStudentSuccess',
+  props<{ data: string }>()
+);
+
 export const loadStudents = createAction(
   '[Student]  loadStudents',
   props<{ filter: string }>()

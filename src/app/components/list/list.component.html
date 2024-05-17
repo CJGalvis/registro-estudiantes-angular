@@ -1,3 +1,21 @@
+
+<div
+  class="alert alert-success animated fadeIn"
+  role="alert"
+  *ngIf="student"
+>
+  Hola <strong>{{ student.name }}</strong> Aquí puedes ver los compañeros con lo cuales compartirás clases!
+</div>
+
+
+<div
+  class="alert alert-danger animated fadeIn"
+  role="alert"
+  *ngIf="error"
+>
+ Oops... Al parecer no pudimos encontrar tus datos
+</div>
+
 <table class="table animated fadeIn" *ngIf="listStudents.length > 0">
   <thead>
     <tr>

@@ -27,13 +27,29 @@ export class StudentsEffects {
     )
   );
 
-  getSubjects$ = createEffect(() =>
+  getStudents$ = createEffect(() =>
     this.actions$.pipe(
       ofType(studentsActions.loadStudents),
       mergeMap((action) =>
         this.studentsServices.getSubjectsByStudent(action.filter).pipe(
           map((data: any) =>
             studentsActions.loadStudentsSuccess({ students: data })
+          ),
+          catchError((errService) =>
+            of(studentsActions.loadStudentserror({ error: errService }))
+          )
+        )
+      )
+    )
+  );
+
+  getSubject$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(studentsActions.loadStudent),
+      mergeMap((action) =>
+        this.studentsServices.getSubjectsByDNI(action.filter).pipe(
+          map((data: any) =>
+            studentsActions.loadStudentSuccess({ data })
           ),
           catchError((errService) =>
             of(studentsActions.loadStudentserror({ error: errService }))
